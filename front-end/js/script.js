@@ -32,7 +32,7 @@ $(document).ready(()=>{
 
         let colors=generatecolor(n)
         let chosencolor=[]
-        chosencolor=colors[Math.floor((3*n*Math.random()+1))]
+        chosencolor=colors[Math.floor(3*n*Math.random())]
 
         $('.choosecolor').text(`RGB(${chosencolor[0]},${chosencolor[1]},${chosencolor[2]})`)
 
@@ -47,8 +47,7 @@ $(document).ready(()=>{
             if(!arg.target.className.includes('color-box'))return
             usedclicks++
             let color_rgb_value_str=$(arg.target).css('background-color')
-            let color_rgb_value_num=color_rgb_value_str.substring(4,color_rgb_value_str.length-1)
-            let color_rgb_value_arr=color_rgb_value_num.split(',')
+            let color_rgb_value_arr=color_rgb_value_str.substring(4,color_rgb_value_str.length-1).split(',')
             let color_rgb_value_numarray=[]
             color_rgb_value_arr.forEach((element,index) => {
                 color_rgb_value_numarray[index]=parseInt(element)
@@ -94,16 +93,18 @@ $(document).ready(()=>{
 
     }
 
-    function randomrgb(){
-        return[Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)] 
-    }
+    
+    
 
     /*
         this function is used for generating colors on the divs
         generate 3 colors for easy(n=1)
         generate 6 colors for easy(n=2)
         generate 9 colors for easy(n=3)
+
     */
+
+    //each call generates color according to argument given
     function generatecolor(num){
         let noofcolors=3*num;
         let j;
@@ -113,6 +114,11 @@ $(document).ready(()=>{
         }
         console.log(colors)
         return colors
+    }
+
+    //returns random values of rgb for each function call
+    function randomrgb(){
+        return[Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)] 
     }
 
 })
